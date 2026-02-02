@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 2344 851" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-306.406,-1074.39)">
+        <g transform="matrix(1.21867,0,0,1.21867,-22.895,-207.909)">
+            <g transform="matrix(2.15071,0,0,2.15071,-853.72,17.7701)">
+                <path d="M752.89,643.384C752.89,643.384 753.79,757.972 753.829,762.878C753.83,763.026 753.828,763.173 753.822,763.321C752.395,797.468 686.896,794.443 681.439,770.17C681.239,769.298 681.137,768.406 681.137,767.511C681.122,756.29 681.122,569.891 681.122,513.609C681.122,509.413 679.427,505.395 676.422,502.465C673.418,499.536 669.357,497.945 665.162,498.052C640.317,498.685 593.092,499.889 572.349,500.418C559.045,500.758 547.247,509.054 542.427,521.459C538.679,531.146 538.205,542.521 541.251,552.785C545.312,566.46 558.007,575.737 572.269,575.452C627.016,574.366 822.572,570.455 822.572,570.455" style="fill:none;stroke:rgb(24,164,249);stroke-width:33.33px;"/>
+            </g>
+            <g transform="matrix(1.60662,0,0,1.60662,-535.53,267.234)">
+                <circle cx="942.358" cy="605.855" r="43.111" style="fill:rgb(247,105,8);"/>
+            </g>
+        </g>
+        <g transform="matrix(2.43758,0,0,2.43758,322.441,-909.311)">
+            <text x="300.535px" y="1036.7px" style="font-family:'Kanit-Black', 'Kanit';font-weight:900;font-size:106.884px;fill:rgb(24,164,249);">TEK<tspan x="493.017px " y="1036.7px ">V</tspan>ION</text>
+            <g transform="matrix(106.884,0,0,106.884,959.425,1135.04)">
+            </g>
+            <text x="300.535px" y="1135.04px" style="font-family:'Kanit-Regular', 'Kanit';font-size:106.884px;fill:rgb(24,164,249);">TE<tspan x="418.951px " y="1135.04px ">C</tspan>HNOL<tspan x="751.226px 825.612px 889.309px " y="1135.04px 1135.04px 1135.04px ">OGY</tspan></text>
+        </g>
+    </g>
+</svg>
