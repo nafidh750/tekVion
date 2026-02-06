@@ -1,0 +1,12 @@
+# Ensure index files are preferred and disable directory listing
+DirectoryIndex index.php index.html
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# Basic security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
