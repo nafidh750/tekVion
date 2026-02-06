@@ -1,0 +1,10 @@
+<?php
+/**
+ * Copy this file to database.local.php and set your database credentials.
+ */
+return [
+    'host' => 'localhost',
+    'name' => 'tekvion_cms',
+    'user' => 'root',
+    'pass' => 'your_password',
+];

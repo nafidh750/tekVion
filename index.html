@@ -5,33 +5,46 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
       <!-- site metas -->
       <title>Tekvion</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+      <!-- preconnect to CDNs for faster resource loading -->
+      <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+      <link rel="preconnect" href="https://unpkg.com">
+      <link rel="preconnect" href="https://cdn.jsdelivr.net">
+      <!-- preload critical above-the-fold assets for fast first paint -->
+      <link rel="preload" href="images/loading.gif" as="image">
+      <link rel="preload" href="images/banner.jpg" as="image">
+      <link rel="preload" href="images/Tekvion.svg" as="image">
       <!-- bootstrap css -->
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <!-- style css -->
       <link rel="stylesheet" href="css/style.css">
       <!-- responsive-->
       <link rel="stylesheet" href="css/responsive.css">
-      <!-- awesome fontfamily -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <!-- AOS (Animate on Scroll) CSS -->
-      <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+      <!-- awesome fontfamily – load async so it does not block first paint -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="print" onload="this.media='all'">
+      <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></noscript>
+      <!-- AOS (Animate on Scroll) CSS – load async so it does not block first paint -->
+      <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" media="print" onload="this.media='all'">
+      <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
    <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="" /></div>
+      <!-- loader – hidden quickly via inline script for faster perceived load -->
+      <div class="loader_bg" id="loader_bg">
+         <div class="loader"><img src="images/loading.gif" alt="" width="60" height="60" /></div>
       </div>
+      <script>
+         (function(){ var lb=document.getElementById('loader_bg'); if(!lb) return; function hide(){ lb.style.pointerEvents='none'; lb.classList.add('loader-js-hiding'); lb.style.opacity='0'; lb.style.transition='opacity 0.3s'; setTimeout(function(){ lb.remove(); }, 320); } if(document.readyState==='complete') hide(); else { window.addEventListener('load', hide); document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 220); }); setTimeout(hide, 3500); }
+         })();
+      </script>
       <!-- end loader -->
       <!-- header -->
       <header>
@@ -42,7 +55,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="images/Tekvion.svg" alt="Tekvion logo" style="height:60px;" /></a>
+                              <a href="index.html"><img src="images/Tekvion.svg" alt="Tekvion logo" width="120" height="60" style="height:60px;" fetchpriority="high" /></a>
                            </div>
                         </div>
                      </div>
@@ -64,10 +77,19 @@
                                  <a class="nav-link" href="#what-we-do">What we do</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="portfolio.html">Portfolio </a>
+                                 <a class="nav-link" href="portfolio.html">Portfolio</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="compliance.html">Compliance</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="value-proposition.html">Value Proposition</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="contact.html">Contact Us</a>
+                              </li>
+                              <li class="nav-item nav-item-login d-md-none">
+                                 <a class="nav-link" href="login.html">Login</a>
                               </li>
                            </ul>
                         </div>
@@ -75,8 +97,8 @@
                   </div>
                   <div class="col-md-2 d_none">
                      <ul class="email text_align_right">
-                        <li> <a href="Javascript:void(0)"></a></li>
-                        <li> <a href="Javascript:void(0)"> <i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"> </i></a> </li>
+                     <li><a href="login.html">Login</a></li>
+                     <li><a href="javascript:void(0)" aria-label="Search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                      </ul>
                   </div>
                </div>
@@ -85,13 +107,42 @@
       </header>
       <!-- end header -->
       <!-- start slider section -->
-      <div id="top_section" class=" banner_main">
+      <div id="top_section" class="banner_main">
+         <!-- rotating background images (5 sec transition) -->
+         <div class="banner_bg_rotator" id="banner_bg_rotator" aria-hidden="true">
+            <div class="banner_bg_slide banner_bg_slide--active" style="background-image: url('images/banner.jpg');"></div>
+            <div class="banner_bg_slide" data-bg="images/hero-network.png"></div>
+            <div class="banner_bg_slide" data-bg="images/hero-cubes.png"></div>
+            <div class="banner_bg_slide" data-bg="images/hero-fiber-lights.png"></div>
+            <div class="banner_bg_slide" data-bg="images/chose-geometric.png"></div>
+         </div>
+         <script>
+            (function() {
+               var rotator = document.getElementById('banner_bg_rotator');
+               if (!rotator) return;
+               var slides = rotator.querySelectorAll('.banner_bg_slide');
+               if (slides.length <= 1) return;
+               function ensureBg(slide) {
+                  var bg = slide.getAttribute('data-bg');
+                  if (bg && !slide.style.backgroundImage) {
+                     slide.style.backgroundImage = "url('" + bg + "')";
+                  }
+               }
+               var current = 0;
+               setInterval(function() {
+                  slides[current].classList.remove('banner_bg_slide--active');
+                  current = (current + 1) % slides.length;
+                  ensureBg(slides[current]);
+                  slides[current].classList.add('banner_bg_slide--active');
+               }, 5000);
+            })();
+         </script>
          <!-- particles background -->
          <div id="particles-js" style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:0;"></div>
           <div class="container">
             <div class="row">
                <div class="col-md-12">
-                  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
                      <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -184,7 +235,7 @@
                         <div class="col-lg-6 col-md-6 mb-4">
                            <div class="service-card tech-glow">
                               <div class="service-card-image" data-card-num="01">
-                                 <img src="images/AI & Machine-Learning.jpeg" alt="AI & Machine Learning"/>
+                                 <img src="images/AI & Machine-Learning.jpeg" alt="AI & Machine Learning" width="360" height="180" loading="lazy"/>
                               </div>
                               <div class="service-card-content">
                                  <h3>AI & Machine Learning</h3>
@@ -195,7 +246,7 @@
                         <div class="col-lg-6 col-md-6 mb-4">
                            <div class="service-card tech-glow">
                               <div class="service-card-image" data-card-num="02">
-                                 <img src="images/Cloud-Computing.jpeg" alt="Cloud Computing"/>
+                                 <img src="images/Cloud-Computing.jpeg" alt="Cloud Computing" width="360" height="180" loading="lazy"/>
                               </div>
                               <div class="service-card-content">
                                  <h3>Cloud Computing</h3>
@@ -210,7 +261,7 @@
                         <div class="col-lg-6 col-md-6 mb-4">
                            <div class="service-card tech-glow">
                               <div class="service-card-image" data-card-num="03">
-                                 <img src="images/BigData & Analytics.jpeg" alt="Big Data & Analytics"/>
+                                 <img src="images/BigData & Analytics.jpeg" alt="Big Data & Analytics" width="360" height="180" loading="lazy"/>
                               </div>
                               <div class="service-card-content">
                                  <h3>Big Data & Analytics</h3>
@@ -221,7 +272,7 @@
                         <div class="col-lg-6 col-md-6 mb-4">
                            <div class="service-card tech-glow">
                               <div class="service-card-image" data-card-num="04">
-                                 <img src="images/CyberSecurity.jpeg" alt="Cybersecurity"/>
+                                 <img src="images/CyberSecurity.jpeg" alt="Cybersecurity" width="360" height="180" loading="lazy"/>
                               </div>
                               <div class="service-card-content">
                                  <h3>Cybersecurity</h3>
@@ -236,7 +287,7 @@
                         <div class="col-lg-6 col-md-6 mb-4">
                            <div class="service-card tech-glow">
                               <div class="service-card-image" data-card-num="05">
-                                 <img src="images/API's & System Integration.jpeg" alt="API & System Integration"/>
+                                 <img src="images/API's & System Integration.jpeg" alt="API & System Integration" width="360" height="180" loading="lazy"/>
                               </div>
                               <div class="service-card-content">
                                  <h3>API & Integration</h3>
@@ -247,7 +298,7 @@
                         <div class="col-lg-6 col-md-6 mb-4">
                            <div class="service-card tech-glow">
                               <div class="service-card-image" data-card-num="06">
-                                 <img src="images/Mobile & Web Development.jpeg" alt="Mobile & Web Development"/>
+                                 <img src="images/Mobile & Web Development.jpeg" alt="Mobile & Web Development" width="360" height="180" loading="lazy"/>
                               </div>
                               <div class="service-card-content">
                                  <h3>Mobile & Web Development</h3>
@@ -262,7 +313,7 @@
                         <div class="col-lg-6 col-md-6 mb-4">
                            <div class="service-card tech-glow">
                               <div class="service-card-image" data-card-num="07">
-                                 <img src="images/Automations.jpeg" alt="Intelligent Automation"/>
+                                 <img src="images/Automations.jpeg" alt="Intelligent Automation" width="360" height="180" loading="lazy"/>
                               </div>
                               <div class="service-card-content">
                                  <h3>Intelligent Automation</h3>
@@ -273,7 +324,7 @@
                         <div class="col-lg-6 col-md-6 mb-4">
                            <div class="service-card tech-glow">
                               <div class="service-card-image" data-card-num="08">
-                                 <img src="images/It & Infrastructures Services.webp" alt="IT & Infrastructure Services"/>
+                                 <img src="images/It & Infrastructures Services.webp" alt="IT & Infrastructure Services" width="360" height="180" loading="lazy"/>
                               </div>
                               <div class="service-card-content">
                                  <h3>IT & Infrastructure</h3>
@@ -292,6 +343,74 @@
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                   <span class="sr-only">Next</span>
                </a>
+            </div>
+            <!-- Solutions Grid -->
+            <div class="solutions-section">
+               <div class="titlepage text_align_center">
+                  <h2>Our Solutions</h2>
+               </div>
+               <div class="row solutions-grid">
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-database" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">Data Management</h3>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-building" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">Enterprise Applications</h3>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">Automation and Integration</h3>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">Artificial Intelligence and Agentic AI</h3>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-shield" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">Cybersecurity and Digital Trust</h3>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-cloud" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">AI Infrastructure &amp; Cloud Sovereignty</h3>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-leaf" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">Sustainable &amp; Green Technology</h3>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-balance-scale" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">Information Technology Governance</h3>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-desktop" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">Managed IT Services</h3>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                     <div class="solution-card tech-glow">
+                        <span class="solution-card-icon"><i class="fa fa-list-alt" aria-hidden="true"></i></span>
+                        <h3 class="solution-card-title">Information Technology Service Management</h3>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
@@ -331,12 +450,12 @@
                <div class="col-md-12">
                   <div class="titlepage text_align_center">
                      <h2>Why Choose Tekvion</h2>
-                     <p style="max-width: 800px; margin: 0 auto 40px; color: #333; font-size: 16px; line-height: 1.6;">We bring fresh perspectives, cutting-edge expertise, and unwavering commitment to transform your business with modern technology solutions.</p>
+                     <p class="chose_intro">We bring fresh perspectives, cutting-edge expertise, and unwavering commitment to transform your business with modern technology solutions.</p>
                   </div>
                </div>
                <div class="col-lg-4 col-md-6">
                   <div class="chose_box">
-                     <i><img src="images/chose1.png" alt="#"/></i>
+                     <i><img src="images/chose1.png" alt="" width="80" height="80" loading="lazy"/></i>
                      <h3>Expert Team</h3>
                      <strong>100%</strong>
                      <p style="margin-top: 15px; color: #444; font-size: 14.5px; line-height: 1.7;">Certified professionals with deep expertise in AI, cloud, data engineering, and digital transformation</p>
@@ -344,7 +463,7 @@
                </div>
                <div class="col-lg-4 col-md-6">
                   <div class="chose_box">
-                     <i><img src="images/chose2.png" alt="#"/></i>
+                     <i><img src="images/chose2.png" alt="" width="80" height="80" loading="lazy"/></i>
                      <h3>Modern Tech Stack</h3>
                      <strong>Latest</strong>
                      <p style="margin-top: 15px; color: #444; font-size: 14.5px; line-height: 1.7;">We leverage cutting-edge technologies and best practices to deliver scalable, future-proof solutions</p>
@@ -352,7 +471,7 @@
                </div>
                <div class="col-lg-4 col-md-12">
                   <div class="chose_box">
-                     <i><img src="images/chose3.png" alt="#"/></i>
+                     <i><img src="images/chose3.png" alt="" width="80" height="80" loading="lazy"/></i>
                      <h3>Client Success</h3>
                      <strong>Guaranteed</strong>
                      <p style="margin-top: 15px; color: #444; font-size: 14.5px; line-height: 1.7;">Dedicated partnership approach ensuring measurable business outcomes and ROI for every project</p>
@@ -370,22 +489,23 @@
                   <div class="titlepage text_align_left">
                      <h2>Get In Touch</h2>
                   </div>
-                  <form id="request" class="main_form">
+                  <form id="request" class="main_form" action="contact.php" method="post">
+                     <input type="hidden" name="redirect" value="index.html?contact=success">
                      <div class="row">
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Name" type="type" name=" Name"> 
+                           <input class="contactus" placeholder="Name" type="text" name="name" required>
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
+                           <input class="contactus" placeholder="Phone Number" type="tel" name="phone">
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Email" type="type" name="Email">                          
+                           <input class="contactus" placeholder="Email" type="email" name="email" required>
                         </div>
                         <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name"></textarea>
+                           <textarea class="textarea" placeholder="Message" name="message" rows="5"></textarea>
                         </div>
                         <div class="col-md-12">
-                           <button class="send_btn">Send Now</button>
+                           <button class="send_btn" type="submit">Send Now</button>
                         </div>
                      </div>
                   </form>
@@ -405,8 +525,8 @@
                            <div class="container">
                                 <div class="carousel-caption posi_in">
                                   <div class="clientsl_text">
-                                    <i><img src="images/clint.jpg" alt="Client testimonial"/></i>
-                                    <h3>Nafidh <img src="images/" alt="Rating"/></h3>
+                                    <i><img src="images/clint.jpg" alt="Nafidh" width="80" height="80" loading="lazy"/></i>
+                                    <h3>Nafidh</h3>
                                     <p>Tekvion transformed our digital infrastructure with their exceptional cloud and AI solutions. Their end-to-end approach to digital transformation delivered measurable business outcomes within months. Highly recommended for enterprises seeking quality and expertise.</p>
                                   </div>
                                 </div>
@@ -416,8 +536,8 @@
                            <div class="container">
                               <div class="carousel-caption posi_in">
                                  <div class="clientsl_text">
-                                    <i><img src="images/clint.jpg" alt="#"/></i>
-                                    <h3>Nafidh<img src="images/" alt="#"/></h3>
+                                    <i><img src="images/clint.jpg" alt="Nafidh" width="80" height="80" loading="lazy"/></i>
+                                    <h3>Nafidh</h3>
                                     <p>Tekvion transformed our digital infrastructure with their exceptional cloud and AI solutions. Their end-to-end approach to digital transformation delivered measurable business outcomes within months. Highly recommended for enterprises seeking quality and expertise.</p>
                                  </div>
                               </div>
@@ -427,9 +547,9 @@
                            <div class="container">
                               <div class="carousel-caption posi_in">
                                  <div class="clientsl_text">
-                                    <i><img src="images/" alt="#"/></i>
-                                    <h3>Nafidh<img src="images/icon.png" alt="#"/></h3>
-                                    <p><p>Tekvion transformed our digital infrastructure with their exceptional cloud and AI solutions. Their end-to-end approach to digital transformation delivered measurable business outcomes within months. Highly recommended for enterprises seeking quality and expertise.</p>
+                                    <i><img src="images/clint.jpg" alt="Nafidh" width="80" height="80" loading="lazy"/></i>
+                                    <h3>Nafidh</h3>
+                                    <p>Tekvion transformed our digital infrastructure with their exceptional cloud and AI solutions. Their end-to-end approach to digital transformation delivered measurable business outcomes within months. Highly recommended for enterprises seeking quality and expertise.</p>
                                  </div>
                               </div>
                            </div>
@@ -455,7 +575,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-md-3">
-                     <a class="logo_footer" href="index.html"><img src="images/Tekvion.svg" alt="Tekvion logo" /></a>
+                     <a class="logo_footer" href="index.html"><img src="images/Tekvion.svg" alt="Tekvion logo" width="140" height="40" loading="lazy"/></a>
                   </div>
                   <div class="col-md-9">
                      <form class="newslatter_form">
@@ -466,13 +586,16 @@
                   <div class="col-md-3 col-sm-6"
                   >
                      <div class="Informa helpful">
-                        <h3>Useful  Link</h3>
+                        <h3>Useful Links</h3>
                         <ul>
                            <li><a href="index.html">Home</a></li>
                            <li><a href="about.html">About</a></li>
-                           <li><a href="we_do.html">What we do</a></li>
+                           <li><a href="index.html#what-we-do">What we do</a></li>
                            <li><a href="portfolio.html">Portfolio</a></li>
+                           <li><a href="compliance.html">Compliance</a></li>
+                           <li><a href="value-proposition.html">Value Proposition</a></li>
                            <li><a href="contact.html">Contact us</a></li>
+                           <li><a href="admin/login.php">Admin</a></li>
                         </ul>
                      </div>
                   </div>
@@ -480,7 +603,7 @@
                   
                   <div class="col-md-3 col-sm-6">
                      <div class="Informa conta">
-                        <h3>contact Us</h3>
+                        <h3>Contact Us</h3>
                         <ul>
                            <li> <a href="Javascript:void(0)"> <i class="fa fa-map-marker" aria-hidden="true"></i> Sapphire Tower, Dubai, UAE
                               </a>
@@ -504,11 +627,11 @@
                      </div>
                      <div class="col-md-6">
                         <ul class="social_icon text_align_center">
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-facebook-f"></i></a></li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                           <li><a href="javascript:void(0)" aria-label="Facebook"><i class="fa fa-facebook-f"></i></a></li>
+                           <li><a href="javascript:void(0)" aria-label="Twitter"><i class="fa fa-twitter"></i></a></li>
+                           <li><a href="javascript:void(0)" aria-label="LinkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                           <li><a href="javascript:void(0)" aria-label="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                           <li><a href="javascript:void(0)" aria-label="YouTube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
                         </ul>
                      </div>
                   </div>
@@ -517,16 +640,14 @@
          </div>
       </footer>
       <!-- end footer -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <!-- Particles.js -->
-      <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-      <!-- Typed.js for headline typing -->
-      <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-      <!-- AOS (Animate on Scroll) -->
-      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-      <script src="js/custom.js"></script>
+      <!-- Javascript – all deferred so HTML parses and paints faster -->
+      <script src="js/jquery-3.0.0.min.js" defer></script>
+      <script src="js/bootstrap.bundle.min.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" defer></script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js" defer></script>
+      <script src="js/custom.js" defer></script>
+      <script src="js/anime-init.js" defer></script>
    </body>
 </html>

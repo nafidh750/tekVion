@@ -1,0 +1,6 @@
+# PHP – local config (DB credentials)
+config/database.local.php
+
+# OS
+.DS_Store
+Thumbs.db

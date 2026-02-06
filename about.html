@@ -5,31 +5,33 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
       <!-- site metas -->
       <title>Tekvion</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+      <link rel="preload" href="images/loading.gif" as="image">
+      <link rel="preload" href="images/Tekvion.svg" as="image">
       <!-- bootstrap css -->
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <!-- style css -->
       <link rel="stylesheet" href="css/style.css">
       <!-- responsive-->
       <link rel="stylesheet" href="css/responsive.css">
-      <!-- awesome fontfamily -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="print" onload="this.media='all'">
+      <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></noscript>
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
    <body class="main-layout inner_page">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="" /></div>
+      <!-- loader – hidden quickly for faster perceived load -->
+      <div class="loader_bg" id="loader_bg">
+         <div class="loader"><img src="images/loading.gif" alt="" width="60" height="60"/></div>
       </div>
+      <script>(function(){var lb=document.getElementById('loader_bg');if(!lb)return;function hide(){lb.style.pointerEvents='none';lb.classList.add('loader-js-hiding');lb.style.opacity='0';lb.style.transition='opacity 0.3s';setTimeout(function(){lb.remove();},320);}if(document.readyState==='complete')hide();else{window.addEventListener('load',hide);document.addEventListener('DOMContentLoaded',function(){setTimeout(hide,220);});setTimeout(hide,3500);}})();</script>
       <!-- end loader -->
       <!-- header -->
       <header>
@@ -62,10 +64,19 @@
                                  <a class="nav-link" href="index.html#what-we-do">What we do</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="portfolio.html">Portfolio </a>
+                                 <a class="nav-link" href="portfolio.html">Portfolio</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="compliance.html">Compliance</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="value-proposition.html">Value Proposition</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="contact.html">Contact Us</a>
+                              </li>
+                              <li class="nav-item nav-item-login d-md-none">
+                                 <a class="nav-link" href="login.html">Login</a>
                               </li>
                            </ul>
                         </div>
@@ -73,8 +84,8 @@
                   </div>
                   <div class="col-md-2 d_none">
                      <ul class="email text_align_right">
-                        <li> <a href="Javascript:void(0)"> Login </a></li>
-                        <li> <a href="Javascript:void(0)"> <i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"> </i></a> </li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="javascript:void(0)" aria-label="Search"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                      </ul>
                   </div>
                </div>
@@ -90,6 +101,15 @@
                   <div class="titlepage text_align_center">
                      <h2>About Tekvion</h2>
                      <p class="about_intro">We partner with organizations to design, build, and scale digital products and platforms that deliver measurable business impact.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="row about_executive_row">
+               <div class="col-md-12">
+                  <div class="about_executive tech-glow">
+                     <h3 class="about_executive_title">Executive Summary</h3>
+                     <p class="about_executive_company">TEKVION TECHNOLOGY L.L.C</p>
+                     <p class="about_executive_text">is a Dubai-based technology consulting and services company delivering high-impact solutions across IT infrastructure, cloud, cybersecurity, artificial intelligence, and data-driven platforms. Licensed by the Department of Economy &amp; Tourism – Dubai, Tekvion combines strategic consulting, digital transformation solution design and implementation, and managed services to help organizations modernize operations, secure digital assets, and turn technology into a measurable business advantage in line with the UAE government's mission for the IT sector.</p>
                   </div>
                </div>
             </div>
@@ -120,69 +140,32 @@
                   </div>
                   <div class="col-md-9">
                      <form class="newslatter_form">
-                        <input class="ente" placeholder="Enter your email" type="text" name="Enter your email">
-                        <button class="subs_btn">Sbscribe Now</button>
+                        <input class="ente" placeholder="Enter your email" type="email" name="email" aria-label="Email">
+                        <button class="subs_btn" type="button">Subscribe Now</button>
                      </form>
                   </div>
                   <div class="col-md-3 col-sm-6">
                      <div class="Informa helpful">
-                        <h3>Useful  Link</h3>
+                        <h3>Useful Links</h3>
                         <ul>
                            <li><a href="index.html">Home</a></li>
                            <li><a href="about.html">About</a></li>
-                           <li><a href="we_do.html">What we do</a></li>
+                           <li><a href="index.html#what-we-do">What we do</a></li>
                            <li><a href="portfolio.html">Portfolio</a></li>
+                           <li><a href="compliance.html">Compliance</a></li>
+                           <li><a href="value-proposition.html">Value Proposition</a></li>
                            <li><a href="contact.html">Contact us</a></li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6">
-                     <div class="Informa">
-                        <h3>News</h3>
-                        <ul>
-                           <li>It is a long established                            
-                           </li>
-                           <li>fact that a reader will                           
-                           </li>
-                           <li>be distracted by the                           
-                           </li>
-                           <li>readable content of a                              
-                           </li>
-                           <li>page when                          
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6">
-                     <div class="Informa">
-                        <h3>company</h3>
-                        <ul>
-                           <li>It is a long established                             
-                           </li>
-                           <li>fact that a reader will                            
-                           </li>
-                           <li>be distracted by the                          
-                           </li>
-                           <li>readable content of a                              
-                           </li>
-                           <li>page when                          
-                           </li>
+                           <li><a href="admin/login.php">Admin</a></li>
                         </ul>
                      </div>
                   </div>
                   <div class="col-md-3 col-sm-6">
                      <div class="Informa conta">
-                        <h3>contact Us</h3>
+                        <h3>Contact Us</h3>
                         <ul>
-                           <li> <a href="Javascript:void(0)"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location
-                              </a>
-                           </li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Call +01 1234567890
-                              </a>
-                           </li>
-                           <li> <a href="Javascript:void(0)"> <i class="fa fa-envelope" aria-hidden="true"></i> demo@gmail.com
-                              </a>
-                           </li>
+                           <li><a href="javascript:void(0)"><i class="fa fa-map-marker" aria-hidden="true"></i> Sapphire Tower, Dubai, UAE</a></li>
+                           <li><a href="tel:+971522900966"><i class="fa fa-phone" aria-hidden="true"></i> +971 522 900 966</a></li>
+                           <li><a href="mailto:Info@tekvion.ae"><i class="fa fa-envelope" aria-hidden="true"></i> Info@tekvion.ae</a></li>
                         </ul>
                      </div>
                   </div>
@@ -192,7 +175,7 @@
                <div class="container">
                   <div class="row d_flex">
                      <div class="col-md-6">
-                        <p>© 2020 All Rights Reserved.  <a href="https://html.design/"> Free Html Template</a></p>
+                        <p>&copy; 2026 All Rights Reserved. <a href="index.html">TekVion Technologies</a></p>
                      </div>
                      <div class="col-md-6">
                         <ul class="social_icon text_align_center">
@@ -209,10 +192,11 @@
          </div>
       </footer>
       <!-- end footer -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/custom.js"></script>
+      <!-- Javascript files -->
+      <script src="js/jquery-3.0.0.min.js" defer></script>
+      <script src="js/bootstrap.bundle.min.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js" defer></script>
+      <script src="js/custom.js" defer></script>
+      <script src="js/anime-init.js" defer></script>
    </body>
 </html>

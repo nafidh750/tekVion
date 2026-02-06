@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin Login – Tekvion CMS</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/admin.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="admin-login-page">
+	<div class="admin-login-card">
+		<h1><i class="fa fa-shield" aria-hidden="true"></i> Tekvion CMS</h1>
+		<p class="subtitle">Sign in to the admin panel</p>
+		<form id="adminLoginForm" action="index.html" method="get">
+			<div class="admin-form-group">
+				<label for="adminEmail">Email</label>
+				<input type="email" id="adminEmail" name="email" placeholder="admin@tekvion.ae" required autocomplete="email">
+			</div>
+			<div class="admin-form-group">
+				<label for="adminPassword">Password</label>
+				<input type="password" id="adminPassword" name="password" placeholder="••••••••" required autocomplete="current-password">
+			</div>
+			<div class="admin-form-group">
+				<label class="admin-form-hint" style="margin-bottom:0;">
+					Demo: any email + password <code>admin</code>
+				</label>
+			</div>
+			<button type="submit" class="admin-btn admin-btn-primary">
+				<i class="fa fa-sign-in" aria-hidden="true"></i> Sign in
+			</button>
+		</form>
+		<p class="admin-form-hint" style="text-align:center; margin-top:20px;">
+			<a href="../index.html" style="color:var(--admin-primary);">← Back to site</a>
+		</p>
+	</div>
+	<script src="../js/jquery-3.0.0.min.js"></script>
+	<script src="js/admin.js"></script>
+	<script>
+		document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+			var email = document.getElementById('adminEmail').value.trim();
+			var password = document.getElementById('adminPassword').value;
+			// Demo: accept any email with password "admin"
+			if (password === 'admin') {
+				if (typeof Admin !== 'undefined' && Admin.setSession) {
+					Admin.setSession({ email: email || 'admin@tekvion.ae', name: email.split('@')[0] || 'Admin' });
+				} else {
+					localStorage.setItem('tekvion_admin', JSON.stringify({ email: email || 'admin@tekvion.ae', name: email.split('@')[0] || 'Admin' }));
+				}
+				window.location.href = 'index.html';
+			} else {
+				alert('Invalid credentials. Demo: use password "admin"');
+			}
+		});
+	</script>
+</body>
+</html>
