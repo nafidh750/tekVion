@@ -1,4 +1,4 @@
 ---
 deployment:
   tasks:
-    - bash -lc 'DEPLOYPATH="/home/tekvionae/public_html"; echo "Deploying to $DEPLOYPATH"; mkdir -p "$DEPLOYPATH"; if command -v rsync >/dev/null 2>&1; then rsync -av --delete --exclude=.git --exclude=.cpanel.yml ./ "$DEPLOYPATH/"; else echo "rsync not found, using tar fallback"; tar -cf /tmp/deploy.tar --exclude=.git --exclude=.cpanel.yml .; tar -xf /tmp/deploy.tar -C "$DEPLOYPATH"; rm -f /tmp/deploy.tar; fi; echo "Deployment complete"'
+    - bash -lc 'DEPLOY_DIR="$HOME/public_html"; echo "Deploying to $DEPLOY_DIR"; mkdir -p "$DEPLOY_DIR"; if command -v rsync >/dev/null 2>&1; then rsync -av --delete --exclude=.git --exclude=.cpanel.yml ./ "$DEPLOY_DIR/"; else echo "rsync not found, using tar fallback"; tar -cf /tmp/deploy.tar --exclude=.git --exclude=.cpanel.yml .; tar -xf /tmp/deploy.tar -C "$DEPLOY_DIR"; rm -f /tmp/deploy.tar; fi; echo "Deployment complete"'
