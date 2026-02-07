@@ -60,12 +60,12 @@
                         </div>
                      </div>
                   </div>
-                  <div class="col-md-8 col-sm-9">
+                  <div class="col-md-8 col-sm-9 col-12">
                      <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Open menu">
+                        <span class="navbar-toggler-icon" aria-hidden="true"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                        <div class="collapse navbar-collapse" id="navbarsExample04" aria-expanded="false">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item active">
                                  <a class="nav-link" href="index.html">Home</a>
@@ -105,6 +105,34 @@
             </div>
          </div>
       </header>
+      <script>
+      (function(){
+        function initMobileNav(){
+          var t=document.querySelector('.navbar-toggler[data-target="#navbarsExample04"]');
+          var m=document.getElementById('navbarsExample04');
+          if(!t||!m)return;
+          if(t._mobileNavHandled)return;
+          t._mobileNavHandled=true;
+          t.addEventListener('click',function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            var open=!m.classList.contains('show');
+            m.classList.toggle('show',open);
+            t.setAttribute('aria-expanded',open?'true':'false');
+            t.setAttribute('aria-label',open?'Close menu':'Open menu');
+          });
+          document.addEventListener('click',function(e){
+            if(m.classList.contains('show')&&!m.contains(e.target)&&!t.contains(e.target)){
+              m.classList.remove('show');
+              t.setAttribute('aria-expanded','false');
+              t.setAttribute('aria-label','Open menu');
+            }
+          });
+        }
+        if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initMobileNav);
+        else initMobileNav();
+      })();
+      </script>
       <!-- end header -->
       <!-- start slider section -->
       <div id="top_section" class="banner_main">

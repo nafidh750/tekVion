@@ -15,12 +15,21 @@ body {
 	min-width: 280px;
 }
 
+/* Prevent flex/grid children from overflowing on small screens */
+@media (max-width: 991px) {
+	.row [class*="col-"] {
+		min-width: 0;
+		max-width: 100%;
+	}
+}
+
 /* ========== Mobile: prevent overlapping (applies below 992px) ========== */
 @media (max-width: 991px) {
 	.header {
 		position: relative;
 		min-height: 72px;
 		padding: 12px 16px;
+		z-index: 1030;
 	}
 	.header .row.d_flex {
 		flex-wrap: nowrap;
@@ -39,26 +48,93 @@ body {
 		justify-content: flex-end;
 		align-items: center;
 	}
+	/* Ensure nav and toggler are visible and usable on mobile */
 	.navigation.navbar {
 		margin-top: 0 !important;
-		width: auto;
+		width: 100%;
+		display: flex !important;
+		flex-wrap: wrap;
+		justify-content: flex-end;
 	}
-	.navigation .navbar-collapse {
+	.navigation .navbar-toggler {
+		display: inline-flex !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+		padding: 10px;
+		min-width: 48px;
+		min-height: 48px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(255,255,255,0.5);
+		border-radius: 6px;
+		background: rgba(255,255,255,0.08);
+		cursor: pointer;
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: rgba(255,255,255,0.2);
+		position: relative;
+		z-index: 1032;
+		transition: background 0.2s, border-color 0.2s;
+	}
+	.navigation .navbar-toggler:hover,
+	.navigation .navbar-toggler:focus {
+		background: rgba(255,255,255,0.18);
+		border-color: rgba(255,255,255,0.8);
+		outline: none;
+	}
+	.navigation .navbar-toggler[aria-expanded="true"] {
+		background: rgba(255,255,255,0.2);
+		border-color: #fff;
+	}
+	.navigation.navbar-dark .navbar-toggler-icon {
+		width: 24px;
+		height: 18px;
+		background: none !important;
+		display: block;
+		position: relative;
+	}
+	.navigation.navbar-dark .navbar-toggler-icon::before {
+		content: "";
 		position: absolute;
-		top: 100%;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 24px;
+		height: 2px;
+		background: #fff;
+		box-shadow: 0 -6px 0 #fff, 0 6px 0 #fff;
+	}
+	/* Full-width mobile menu: fixed so it spans viewport and isn’t clipped */
+	.navigation .navbar-collapse {
+		position: fixed;
+		top: 72px;
 		left: 0;
 		right: 0;
-		margin-top: 0;
+		width: 100vw;
+		margin: 0;
 		padding: 12px 16px 20px;
 		background: #1a1a1a;
 		box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 		border-radius: 0 0 10px 10px;
 		max-height: calc(100vh - 72px);
 		overflow-y: auto;
+		z-index: 1025;
+		display: none;
+	}
+	.navigation .navbar-collapse.collapsing,
+	.navigation .navbar-collapse.show {
+		display: block !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+	/* Ensure menu links are clickable and have tap target */
+	.navigation .navbar-collapse .nav-link {
+		cursor: pointer;
+		touch-action: manipulation;
 	}
 	.navigation .navbar-nav {
 		flex-direction: column;
 		width: 100%;
+		margin: 0;
 	}
 	.navigation .navbar-nav .nav-item {
 		width: 100%;
@@ -73,11 +149,6 @@ body {
 		display: flex;
 		align-items: center;
 		width: 100%;
-	}
-	.navigation .navbar-toggler {
-		padding: 10px;
-		min-width: 48px;
-		min-height: 48px;
 	}
 	/* Hide nav link underline animation on small screens to avoid overlap */
 	.navigation .navbar-nav .nav-link::after {
@@ -104,6 +175,46 @@ body {
 	.titlepage h2 {
 		max-width: 100%;
 		overflow: hidden;
+	}
+	/* Cards: prevent overflow and overwrapping on mobile */
+	.service-card,
+	.services-carousel .service-card {
+		max-width: 100%;
+		width: 100%;
+		min-width: 0;
+	}
+	body.inner_page .we_do .service-card,
+	body.inner_page .we_do .service-card-image {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+	.solution-card {
+		min-width: 0;
+		max-width: 100%;
+	}
+	.chose_box {
+		min-width: 0;
+		max-width: 100%;
+	}
+	.compliance-card,
+	.about_card {
+		min-width: 0;
+		max-width: 100%;
+	}
+	.solution-card-title,
+	.compliance-card-body h3,
+	.service-card-content h3,
+	.chose_box h3 {
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+	.we_do_portfolio .col-md-3,
+	.we_do_portfolio [class*="col-"] {
+		min-width: 0;
+		max-width: 100%;
+	}
+	.we_do_portfolio figure {
+		max-width: 100%;
 	}
 }
 
@@ -392,13 +503,13 @@ body {
 	.navigation .navbar-collapse {
 		background: #2b2b2b;
 		padding: 20px;
-		margin-top: 0;
-		top: 100%;
-		position: absolute;
+		position: fixed;
+		top: 80px;
 		left: 0;
 		right: 0;
-		width: 100%;
-		z-index: 999;
+		width: 100vw;
+		margin: 0;
+		z-index: 1025;
 		border-radius: 0 0 8px 8px;
 	}
 	.navigation.navbar-dark .navbar-nav .nav-link {
@@ -682,13 +793,13 @@ body {
 	.navigation .navbar-collapse {
 		background: #2b2b2b;
 		padding: 16px;
-		margin-top: 0;
-		top: 100%;
-		position: absolute;
+		position: fixed;
+		top: 64px;
 		left: 0;
 		right: 0;
-		width: 100%;
-		z-index: 999;
+		width: 100vw;
+		margin: 0;
+		z-index: 1025;
 		border-radius: 0 0 8px 8px;
 		max-height: 80vh;
 		overflow-y: auto;
@@ -767,6 +878,7 @@ body {
 	.solution-card {
 		min-height: 140px;
 		padding: 22px 18px;
+		min-width: 0;
 	}
 	.solution-card-icon {
 		width: 48px;
@@ -812,12 +924,18 @@ body {
 	.chose {
 		padding: 40px 0 32px;
 	}
+	.chose .row.d_flex,
+	.chose .row {
+		flex-wrap: wrap;
+	}
 	.chose .titlepage p {
 		font-size: 14px;
 	}
 	.chose_box {
 		margin-bottom: 24px;
 		text-align: center;
+		min-width: 0;
+		padding: 0 8px;
 	}
 	.chose_box i img {
 		max-width: 64px;
@@ -875,6 +993,14 @@ body {
 
 /* ========== Very small phones (max 380px) ========== */
 @media (max-width: 380px) {
+	.header {
+		min-height: 60px;
+		padding: 10px 12px;
+	}
+	.navigation .navbar-collapse {
+		top: 60px;
+		max-height: calc(100vh - 60px);
+	}
 	.banner_main .bluid h1 {
 		font-size: 24px;
 	}
@@ -889,6 +1015,10 @@ body {
 	}
 	.chose_box strong {
 		font-size: 28px;
+	}
+	.solution-card,
+	.compliance-card {
+		padding: 18px 14px;
 	}
 }
 

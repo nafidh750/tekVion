@@ -6,6 +6,32 @@
 $(function () {
 	"use strict";
 
+	// ----- Mobile nav: ensure menu toggles on all pages (works with or without Bootstrap) -----
+	(function () {
+		var toggler = document.querySelector('.navbar-toggler[data-target="#navbarsExample04"]');
+		var menu = document.getElementById("navbarsExample04");
+		if (!toggler || !menu || toggler._mobileNavHandled) return;
+		function closeMenu() {
+			menu.classList.remove("show");
+			toggler.setAttribute("aria-expanded", "false");
+			toggler.setAttribute("aria-label", "Open menu");
+		}
+		function openMenu() {
+			menu.classList.add("show");
+			toggler.setAttribute("aria-expanded", "true");
+			toggler.setAttribute("aria-label", "Close menu");
+		}
+		toggler.addEventListener("click", function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+			if (menu.classList.contains("show")) closeMenu();
+			else openMenu();
+		});
+		document.addEventListener("click", function (e) {
+			if (menu.classList.contains("show") && !menu.contains(e.target) && !toggler.contains(e.target)) closeMenu();
+		});
+	})();
+
 	// ----- Preloader (hide quickly – index uses inline script; this is fallback for other pages) -----
 	function hideLoader() {
 		var $loader = $(".loader_bg");
