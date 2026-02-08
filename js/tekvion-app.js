@@ -13,7 +13,7 @@ document.addEventListener("alpine:init", function () {
 			phoneLink: "",
 			emailLink: "",
 			init: function () {
-				this.apiUrl = document.body.dataset.apiUrl || "api/get_content.php?type=all";
+				this.apiUrl = document.body.dataset.apiUrl || "";
 				this.refreshContactLinks();
 				this.fetchContent();
 			},
@@ -33,16 +33,17 @@ document.addEventListener("alpine:init", function () {
 					var response = await fetch(this.apiUrl, {
 						headers: { Accept: "application/json" },
 					});
-					if (!response.ok) return;
+					if (!response.ok) {
+						console.warn("TekVion content fetch failed with status", response.status);
+						return;
+					}
 					var data = await response.json();
 					if (data && data.settings) {
 						this.settings = Object.assign({}, this.settings, data.settings);
 						this.refreshContactLinks();
 					}
 				} catch (error) {
-					if (window && window.console) {
-						window.console.warn("TekVion content fetch failed", error);
-					}
+					console.warn("TekVion content fetch failed", error);
 				}
 			},
 		};
