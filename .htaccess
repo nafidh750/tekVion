@@ -1,5 +1,6 @@
 # Ensure index files are preferred and disable directory listing
-DirectoryIndex index.php index.html
+# Prefer static index.html, then PHP index
+DirectoryIndex index.html index.php
 <IfModule mod_autoindex.c>
   Options -Indexes
 </IfModule>

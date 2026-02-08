@@ -21,6 +21,7 @@ Or in MySQL client:
 
 ```sql
 SOURCE /path/to/TekVion/sql/schema.sql;
+### 1. Database (cPanel)
 ```
 
 ### 2. Config
@@ -28,6 +29,11 @@ SOURCE /path/to/TekVion/sql/schema.sql;
 Copy the example config and set your database credentials:
 
 ```bash
+1. In cPanel, open **MySQL® Databases**.
+2. Create a new database (for example: `cpuser_tekvion`).
+3. Create a new MySQL user (for example: `cpuser_tekuser`) and set a strong password.
+4. Add that user to the database **with ALL PRIVILEGES**.
+5. Open **phpMyAdmin** in cPanel, select your new database, and **Import** the file `sql/schema.sql` from this project.
 cp config/database.local.php.example config/database.local.php
 ```
 
@@ -41,13 +47,16 @@ return [
     'pass' => 'your_password',
 ];
 ```
-
-### 3. Create admin user
-
-Open in browser:
+    'host' => 'localhost',
+    // Example: 'cpuser_tekvion' (database name from cPanel)
+    'name' => 'your_cpanel_database_name',
+    // Example: 'cpuser_tekuser' (database user from cPanel)
+    'user' => 'your_cpanel_db_user',
+    'pass' => 'your_cpanel_db_password',
 
 ```
 http://your-site/install.php
+### 3. Upload / deploy to cPanel
 ```
 
 This creates the default admin user:
