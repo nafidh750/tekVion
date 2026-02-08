@@ -26,7 +26,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
-   <body class="main-layout inner_page">
+   <body class="main-layout inner_page" data-api-url="/api/content?type=all" data-contact-action="/contact">
       <!-- loader – hidden quickly for faster perceived load -->
       <div class="loader_bg" id="loader_bg">
          <div class="loader"><img src="images/loading.gif" alt="" width="60" height="60"/></div>
@@ -101,7 +101,7 @@
                   <div class="titlepage text_align_left">
                      <h2>Get In Touch</h2>
                   </div>
-                  <form id="request" class="main_form" action="contact.php" method="post">
+                  <form id="request" class="main_form" action="contact.php" method="post" data-contact-form>
                      <input type="hidden" name="redirect" value="contact.html">
                      <div class="row">
                         <div class="col-md-12">
@@ -159,9 +159,9 @@
                      <div class="Informa conta">
                         <h3>Contact Us</h3>
                         <ul>
-                           <li><a href="javascript:void(0)"><i class="fa fa-map-marker" aria-hidden="true"></i> Sapphire Tower, Dubai, UAE</a></li>
-                           <li><a href="tel:+971522900966"><i class="fa fa-phone" aria-hidden="true"></i> +971 522 900 966</a></li>
-                           <li><a href="mailto:Info@tekvion.ae"><i class="fa fa-envelope" aria-hidden="true"></i> Info@tekvion.ae</a></li>
+                           <li><a href="javascript:void(0)"><i class="fa fa-map-marker" aria-hidden="true"></i> <span data-setting="address">Sapphire Tower, Dubai, UAE</span></a></li>
+                           <li><a href="tel:+971522900966" data-contact-link="phone"><i class="fa fa-phone" aria-hidden="true"></i> <span data-setting="phone">+971 522 900 966</span></a></li>
+                           <li><a href="mailto:Info@tekvion.ae" data-contact-link="email"><i class="fa fa-envelope" aria-hidden="true"></i> <span data-setting="email">Info@tekvion.ae</span></a></li>
                         </ul>
                      </div>
                   </div>
@@ -191,6 +191,9 @@
       <!-- Javascript files -->
       <script src="js/jquery-3.0.0.min.js" defer></script>
       <script src="js/bootstrap.bundle.min.js" defer></script>
+      <script src="https://unpkg.com/react@18/umd/react.production.min.js" defer></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" defer></script>
+      <script src="js/tekvion-app.js" defer></script>
       <script src="js/custom.js" defer></script>
    </body>
 </html>

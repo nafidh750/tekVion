@@ -36,7 +36,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
-   <body class="main-layout">
+   <body class="main-layout" data-api-url="/api/content?type=all" data-contact-action="/contact">
       <!-- loader – hidden quickly via inline script for faster perceived load -->
       <div class="loader_bg" id="loader_bg">
          <div class="loader"><img src="images/loading.gif" alt="" width="60" height="60" /></div>
@@ -245,7 +245,7 @@
                <div class="col-md-12">
                   <div class="titlepage text_align_center">
                      <h2></h2>
-                     <p class="we_do_intro">We design and deliver end-to-end digital transformation solutions.</p>
+                     <p class="we_do_intro" data-setting="we_do_intro">We design and deliver end-to-end digital transformation solutions.</p>
                   </div>
                </div>
             </div>
@@ -450,7 +450,7 @@
                <div class="col-md-12">
                   <div class="titlepage text_align_center">
                      <h2>About Tekvion</h2>
-                     <p class="about_intro">We design and deliver end-to-end digital transformation solutions—strategy, cloud, data, and automation—helping organizations modernize, scale, and achieve measurable business outcomes.</p>
+                        <p class="about_intro" data-setting="about_intro">We design and deliver end-to-end digital transformation solutions—strategy, cloud, data, and automation—helping organizations modernize, scale, and achieve measurable business outcomes.</p>
                   </div>
                </div>
             </div>
@@ -517,7 +517,7 @@
                   <div class="titlepage text_align_left">
                      <h2>Get In Touch</h2>
                   </div>
-                  <form id="request" class="main_form" action="contact.php" method="post">
+                  <form id="request" class="main_form" action="contact.php" method="post" data-contact-form>
                      <input type="hidden" name="redirect" value="index.html?contact=success">
                      <div class="row">
                         <div class="col-md-12">
@@ -633,15 +633,15 @@
                      <div class="Informa conta">
                         <h3>Contact Us</h3>
                         <ul>
-                           <li> <a href="Javascript:void(0)"> <i class="fa fa-map-marker" aria-hidden="true"></i> Sapphire Tower, Dubai, UAE
-                              </a>
-                           </li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Call +971 522 900 966
-                              </a>
-                           </li>
-                           <li> <a href="Javascript:void(0)"> <i class="fa fa-envelope" aria-hidden="true"></i> Info@tekvion.ae
-                              </a>
-                           </li>
+                           <li> <a href="javascript:void(0)"> <i class="fa fa-map-marker" aria-hidden="true"></i> <span data-setting="address">Sapphire Tower, Dubai, UAE</span>
+                               </a>
+                            </li>
+                           <li> <a href="tel:+971522900966" data-contact-link="phone"><i class="fa fa-phone" aria-hidden="true"></i> <span data-setting="phone">+971 522 900 966</span>
+                               </a>
+                            </li>
+                           <li> <a href="mailto:Info@tekvion.ae" data-contact-link="email"> <i class="fa fa-envelope" aria-hidden="true"></i> <span data-setting="email">Info@tekvion.ae</span>
+                               </a>
+                            </li>
                         </ul>
                      </div>
                   </div>
@@ -675,6 +675,9 @@
       <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" defer></script>
       <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js" defer></script>
+      <script src="https://unpkg.com/react@18/umd/react.production.min.js" defer></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" defer></script>
+      <script src="js/tekvion-app.js" defer></script>
       <script src="js/custom.js" defer></script>
       <script src="js/anime-init.js" defer></script>
    </body>

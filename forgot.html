@@ -18,7 +18,7 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
-<body class="main-layout inner_page">
+<body class="main-layout inner_page" data-api-url="/api/content?type=all">
 	<div class="loader_bg" id="loader_bg">
 		<div class="loader"><img src="images/loading.gif" alt="" width="60" height="60"/></div>
 	</div>
@@ -129,14 +129,14 @@
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
-						<div class="Informa conta">
-							<h3>Contact Us</h3>
-							<ul>
-								<li><a href="javascript:void(0)"><i class="fa fa-map-marker" aria-hidden="true"></i> Sapphire Tower, Dubai, UAE</a></li>
-								<li><a href="tel:+971522900966"><i class="fa fa-phone" aria-hidden="true"></i> +971 522 900 966</a></li>
-								<li><a href="mailto:Info@tekvion.ae"><i class="fa fa-envelope" aria-hidden="true"></i> Info@tekvion.ae</a></li>
-							</ul>
-						</div>
+					<div class="Informa conta">
+						<h3>Contact Us</h3>
+						<ul>
+							<li><a href="javascript:void(0)"><i class="fa fa-map-marker" aria-hidden="true"></i> <span data-setting="address">Sapphire Tower, Dubai, UAE</span></a></li>
+							<li><a href="tel:+971522900966" data-contact-link="phone"><i class="fa fa-phone" aria-hidden="true"></i> <span data-setting="phone">+971 522 900 966</span></a></li>
+							<li><a href="mailto:Info@tekvion.ae" data-contact-link="email"><i class="fa fa-envelope" aria-hidden="true"></i> <span data-setting="email">Info@tekvion.ae</span></a></li>
+						</ul>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -163,6 +163,9 @@
 
 	<script src="js/jquery-3.0.0.min.js" defer></script>
 	<script src="js/bootstrap.bundle.min.js" defer></script>
+	<script src="https://unpkg.com/react@18/umd/react.production.min.js" defer></script>
+	<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" defer></script>
+	<script src="js/tekvion-app.js" defer></script>
 	<script src="js/custom.js" defer></script>
 	<script src="js/auth.js" defer></script>
 </body>

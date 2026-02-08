@@ -103,12 +103,14 @@ define('BASE_PATH', '/tekvion');
 
 ## Contact form
 
-Forms on `index.html` and `contact.html` POST to `contact.php` with:
+Forms on `index.html` and `contact.html` POST to the backend with:
 
 - `name`, `email`, `phone`, `message`
 - `redirect` – URL to redirect after submit (e.g. `contact.html` or `index.html?contact=success`)
 
 Messages are stored in `contact_messages`. View count on the admin dashboard.
+
+When using Laravel, set `data-contact-action="/contact"` on the `<body>` tag (already set on the public pages) so the form submits to your Laravel route. If you want to keep using this PHP backend, remove the `data-contact-action` attribute or set it to `contact.php`.
 
 ## Public API
 
@@ -119,6 +121,14 @@ Messages are stored in `contact_messages`. View count on the admin dashboard.
 - **GET** `api/get_content.php?type=hero` – Only hero_slides
 
 Use this to drive a dynamic frontend or headless client.
+
+## Frontend framework (React)
+
+Public pages now load React (via CDN) with `js/tekvion-app.js` to hydrate key content from the backend.
+
+- Configure the API endpoint by setting `data-api-url` on the `<body>` tag (defaults to `/api/content?type=all`).
+- When pointing to a Laravel backend, expose an API route (for example, `/api/content?type=all`) that returns a `settings` object with `address`, `phone`, `email`, `we_do_intro`, and `about_intro`.
+- If you want to keep using the PHP backend in this repo, set `data-api-url` to `api/get_content.php?type=all`.
 
 ## Security notes
 
