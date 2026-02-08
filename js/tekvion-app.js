@@ -11,13 +11,15 @@
 	};
 
 	function buildPhoneHref(phone) {
-		if (!phone) return "javascript:void(0)";
-		return "tel:" + phone.replace(/[\s()-]/g, "");
+		var safePhone = typeof phone === "string" ? phone.trim() : "";
+		if (!safePhone) return "javascript:void(0)";
+		return "tel:" + safePhone.replace(/[\s()-]/g, "");
 	}
 
 	function buildEmailHref(email) {
-		if (!email) return "javascript:void(0)";
-		return "mailto:" + email;
+		var safeEmail = typeof email === "string" ? email.trim() : "";
+		if (!safeEmail) return "javascript:void(0)";
+		return "mailto:" + safeEmail;
 	}
 
 	function applySettings(settings) {
@@ -28,12 +30,12 @@
 			}
 		});
 
-		var phoneHref = buildPhoneHref((settings.phone || "").trim());
+		var phoneHref = buildPhoneHref(settings.phone);
 		document.querySelectorAll('[data-contact-link="phone"]').forEach(function (el) {
 			el.setAttribute("href", phoneHref);
 		});
 
-		var emailHref = buildEmailHref((settings.email || "").trim());
+		var emailHref = buildEmailHref(settings.email);
 		document.querySelectorAll('[data-contact-link="email"]').forEach(function (el) {
 			el.setAttribute("href", emailHref);
 		});
@@ -72,8 +74,7 @@
 	function TekvionApp() {
 		var _React = window.React;
 		var apiUrl = document.body.dataset.apiUrl || "/api/content?type=all";
-		var _useState = _React.useState,
-			settingsState = _useState(defaultSettings),
+		var settingsState = _React.useState(defaultSettings),
 			settings = settingsState[0],
 			setSettings = settingsState[1];
 		var _useEffect = _React.useEffect;
