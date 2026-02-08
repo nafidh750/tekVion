@@ -10,8 +10,8 @@ document.addEventListener("alpine:init", function () {
 				about_intro:
 					"We design and deliver end-to-end digital transformation solutions—strategy, cloud, data, and automation—helping organizations modernize, scale, and achieve measurable business outcomes.",
 			},
-			phoneLink: "tel:+971522900966",
-			emailLink: "mailto:Info@tekvion.ae",
+			phoneLink: "",
+			emailLink: "",
 			init: function () {
 				this.apiUrl = (document.body && document.body.dataset.apiUrl) || "api/get_content.php?type=all";
 				this.refreshContactLinks();
@@ -39,7 +39,11 @@ document.addEventListener("alpine:init", function () {
 						this.settings = Object.assign({}, this.settings, data.settings);
 						this.refreshContactLinks();
 					}
-				} catch (error) {}
+				} catch (error) {
+					if (window && window.console) {
+						window.console.warn("TekVion content fetch failed", error);
+					}
+				}
 			},
 		};
 	});
