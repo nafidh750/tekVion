@@ -81,13 +81,7 @@
 
 		_useEffect(function () {
 			applySettings(settings);
-		}, [
-			settings.address,
-			settings.phone,
-			settings.email,
-			settings.we_do_intro,
-			settings.about_intro,
-		]);
+		}, [settings]);
 
 		_useEffect(function () {
 			applyContactAction();
@@ -95,7 +89,7 @@
 
 		_useEffect(function () {
 			fetchSettings(apiUrl, setSettings);
-		}, [apiUrl, setSettings]);
+		}, [apiUrl]);
 
 		return null;
 	}
