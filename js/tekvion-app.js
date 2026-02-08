@@ -13,7 +13,7 @@ document.addEventListener("alpine:init", function () {
 			phoneLink: "",
 			emailLink: "",
 			init: function () {
-				this.apiUrl = (document.body && document.body.dataset.apiUrl) || "api/get_content.php?type=all";
+				this.apiUrl = document.body.dataset.apiUrl || "api/get_content.php?type=all";
 				this.refreshContactLinks();
 				this.fetchContent();
 			},
