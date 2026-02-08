@@ -67,7 +67,8 @@
 				}
 			})
 			.catch(function (error) {
-				console.warn("TekVion content fetch failed", error);
+				var errorType = error && error.name ? error.name : "UnknownError";
+				console.warn("TekVion content fetch failed (" + errorType + ")", error);
 			});
 	}
 
@@ -79,9 +80,11 @@
 			setSettings = settingsState[1];
 		var _useEffect = _React.useEffect;
 
+		var settingsKey = JSON.stringify(settings);
+
 		_useEffect(function () {
 			applySettings(settings);
-		}, [settings]);
+		}, [settingsKey]);
 
 		_useEffect(function () {
 			applyContactAction();
