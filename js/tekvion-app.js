@@ -51,7 +51,10 @@
 
 	function fetchSettings(apiUrl, setSettings) {
 		if (!apiUrl) return;
-		fetch(apiUrl, { headers: { Accept: "application/json" } })
+		fetch(apiUrl, {
+			headers: { Accept: "application/json" },
+			credentials: "same-origin",
+		})
 			.then(function (response) {
 				if (!response.ok) {
 					console.warn("TekVion content fetch failed with status", response.status);
@@ -80,11 +83,9 @@
 			setSettings = settingsState[1];
 		var _useEffect = _React.useEffect;
 
-		var settingsKey = JSON.stringify(settings);
-
 		_useEffect(function () {
 			applySettings(settings);
-		}, [settingsKey]);
+		}, [settings]);
 
 		_useEffect(function () {
 			applyContactAction();
