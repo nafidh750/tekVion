@@ -120,6 +120,13 @@ Messages are stored in `contact_messages`. View count on the admin dashboard.
 
 Use this to drive a dynamic frontend or headless client.
 
+## Frontend framework (Alpine.js)
+
+Public pages now load Alpine.js (via CDN) with `js/tekvion-app.js` to hydrate key content from the backend.
+
+- Configure the API endpoint by setting `data-api-url` on the `<body>` tag (defaults to `api/get_content.php?type=all`).
+- When pointing to a Laravel backend, set `data-api-url` to your Laravel API route (for example, `/api/content?type=all`) and return a `settings` object with `address`, `phone`, `email`, `we_do_intro`, and `about_intro`.
+
 ## Security notes
 
 - Remove or restrict `install.php` after first run (e.g. delete or protect by IP).

@@ -26,7 +26,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
-   <body class="main-layout inner_page">
+   <body class="main-layout inner_page" x-data="tekvionApp()" x-init="init()" data-api-url="api/get_content.php?type=all">
       <!-- loader – hidden quickly for faster perceived load -->
       <div class="loader_bg" id="loader_bg">
          <div class="loader"><img src="images/loading.gif" alt="" width="60" height="60"/></div>
@@ -157,20 +157,20 @@
                      </div>
                   </div>
                   <div class="col-md-3 col-sm-6">
-                     <div class="Informa conta">
-                        <h3>contact Us</h3>
-                        <ul>
-                           <li> <a href="Javascript:void(0)"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location
-                              </a>
-                           </li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Call +01 1234567890
-                              </a>
-                           </li>
-                           <li> <a href="Javascript:void(0)"> <i class="fa fa-envelope" aria-hidden="true"></i> demo@gmail.com
-                              </a>
-                           </li>
-                        </ul>
-                     </div>
+                  <div class="Informa conta">
+                     <h3>contact Us</h3>
+                     <ul>
+                        <li> <a href="Javascript:void(0)"> <i class="fa fa-map-marker" aria-hidden="true"></i> <span x-text="settings.address">Sapphire Tower, Dubai, UAE</span>
+                           </a>
+                        </li>
+                        <li> <a x-bind:href="phoneLink"><i class="fa fa-phone" aria-hidden="true"></i> <span x-text="settings.phone">+971 522 900 966</span>
+                           </a>
+                        </li>
+                        <li> <a x-bind:href="emailLink"> <i class="fa fa-envelope" aria-hidden="true"></i> <span x-text="settings.email">Info@tekvion.ae</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
                   </div>
                </div>
             </div>
@@ -198,6 +198,8 @@
       <!-- Javascript files -->
       <script src="js/jquery-3.0.0.min.js" defer></script>
       <script src="js/bootstrap.bundle.min.js" defer></script>
+      <script src="https://unpkg.com/alpinejs@3.13.5/dist/cdn.min.js" defer></script>
+      <script src="js/tekvion-app.js" defer></script>
       <script src="js/custom.js" defer></script>
    </body>
 </html>
