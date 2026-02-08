@@ -81,12 +81,21 @@
 
 		_useEffect(function () {
 			applySettings(settings);
-		}, [settings]);
+		}, [
+			settings.address,
+			settings.phone,
+			settings.email,
+			settings.we_do_intro,
+			settings.about_intro,
+		]);
 
 		_useEffect(function () {
 			applyContactAction();
+		}, []);
+
+		_useEffect(function () {
 			fetchSettings(apiUrl, setSettings);
-		}, [apiUrl]);
+		}, [apiUrl, setSettings]);
 
 		return null;
 	}
